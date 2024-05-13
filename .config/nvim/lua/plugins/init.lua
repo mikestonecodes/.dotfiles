@@ -27,6 +27,7 @@ return {
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{ "echasnovski/mini.ai", version = "*", opts = {} },
+	{ "echasnovski/mini.surround", version = "*", opts = {} },
 	{ "ThePrimeagen/vim-be-good" },
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
