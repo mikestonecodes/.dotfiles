@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Network Reset
+Comment=Reset the network connection
+Exec=bash -c 'nmcli networking off && nmcli networking on'
+Icon=network
+Terminal=false
+Type=Application
+Categories=System;
+
