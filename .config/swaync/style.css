@@ -20,7 +20,7 @@
 }
 
 .notification-row .notification-background {
-  padding: 6px 12px;
+  padding: 12px 24px;
 }
 
 .notification-row .notification-background .close-button {
@@ -46,9 +46,8 @@
 }
 
 .notification-row .notification-background .notification {
-  /* The actual notification */
+  /* The actual noltification */
   border-radius: 12px;
-  margin-top:10px;
   border: 1px solid @noti-border-color;
   padding: 0;
   transition: background 0.15s ease-in-out;
@@ -68,7 +67,7 @@
 }
 
 .notification-row .notification-background .notification .notification-action, .notification-row .notification-background .notification .notification-default-action {
-  padding: 4px;
+  padding: 12px;
   margin: 0;
   box-shadow: none;
   background: transparent;
@@ -104,19 +103,19 @@
   -gtk-icon-effect: none;
   border-radius: 100px;
   /* Size in px */
-  margin: 4px;
+  margin: 12px;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .app-icon {
   /* Notification app icon (only visible when the primary image is set) */
   -gtk-icon-effect: none;
   -gtk-icon-shadow: 0 1px 4px black;
-  margin: 6px;
+  margin: 20px;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
   /* Notification summary/title */
-  font-size: 16px;
+  font-size: 36px;
   font-weight: bold;
   background: transparent;
   color: @text-color;
@@ -125,7 +124,7 @@
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
   /* Notification time-ago */
-  font-size: 16px;
+  font-size: 36px;
   font-weight: bold;
   background: transparent;
   color: @text-color;
@@ -135,7 +134,7 @@
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
   /* Notification body */
-  font-size: 15px;
+  font-size: 32px;
   font-weight: normal;
   background: transparent;
   color: @text-color;
