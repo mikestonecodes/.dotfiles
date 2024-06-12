@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-local mux = wezterm.mux
+config.font = wezterm.font 'JetBrains Mono'
 config.color_scheme = "Abernathy"
 config.font_size = 20.0
 config.animation_fps = 70
