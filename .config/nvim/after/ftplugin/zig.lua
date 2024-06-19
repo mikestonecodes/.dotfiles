@@ -13,21 +13,15 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	group = group,
 	buffer = buffer,
 	callback = function()
-		local qflist = vim.fn.getqflist()
-		local diagnostics_by_buf = vim.diagnostic.fromqflist(qflist)
-
-		for _, diagnostic in ipairs(diagnostics_by_buf) do
-			vim.diagnostic.set(ns, diagnostic.bufnr, { diagnostic })
-		end
-
 		vim.schedule(function()
-			local total_errors = 0
-			local current_bufnr = vim.api.nvim_get_current_buf()
+			local qflist = vim.fn.getqflist()
+			local diagnostics_by_buf = vim.diagnostic.fromqflist(qflist)
 
-			for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-				if bufnr ~= current_bufnr then
-					total_errors = total_errors + #vim.diagnostic.get(bufnr)
-				end
+			local total_errors = 0
+			vim.diagnostic.reset()
+			for _, diagnostic in ipairs(diagnostics_by_buf) do
+				vim.diagnostic.set(ns, diagnostic.bufnr, { diagnostic })
+				total_errors = total_errors + 1
 			end
 
 			vim.cmd(total_errors > 0 and "Trouble" or "TroubleClose")
