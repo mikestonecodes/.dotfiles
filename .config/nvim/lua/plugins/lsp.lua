@@ -52,6 +52,14 @@ return {
 						},
 					})
 				end,
+				["zls"] = function()
+					lspconfig.zls.setup({
+						capabilities = capabilities,
+						handlers = {
+							["textDocument/publishDiagnostics"] = function() end,
+						},
+					})
+				end,
 				["lua_ls"] = function()
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,

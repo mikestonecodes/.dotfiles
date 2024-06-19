@@ -17,6 +17,7 @@ return {
 				toml = { "taplo" },
 				go = { "goimports", "gofmt" },
 				sh = { "shfmt" },
+				zig = { "zigfmt" },
 			},
 			formatters = {
 				goimports = {

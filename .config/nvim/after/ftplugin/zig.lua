@@ -14,9 +14,12 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   callback = function(event)
     local qflist = vim.fn.getqflist()
     local diagnostics = vim.diagnostic.fromqflist(qflist)
-
+	for _, diagnostic in ipairs(diagnostics) do
+      diagnostic.message = diagnostic.message:sub(9)
+    end
     vim.diagnostic.reset(ns, event.buf) -- don't actually know if this is necessary, fafo
     vim.diagnostic.set(ns, event.buf, diagnostics)
   end,
 })
 vim.cmd("silent! make! | redraw!")
+vim.g.zig_fmt_autosave = 0
