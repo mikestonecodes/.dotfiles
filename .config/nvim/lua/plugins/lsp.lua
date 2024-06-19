@@ -55,9 +55,7 @@ return {
 				["zls"] = function()
 					lspconfig.zls.setup({
 						capabilities = capabilities,
-						handlers = {
-							["textDocument/publishDiagnostics"] = function() end,
-						},
+						cmd = { "~/.local/bin/zls" },
 					})
 				end,
 				["lua_ls"] = function()
