@@ -36,7 +36,7 @@ return {
 				"gopls",
 				"biome",
 				"tsserver",
-				"zls"
+				"zls",
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
@@ -44,7 +44,12 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-
+				["zls"] = function()
+					lspconfig.zls.setup({
+						capabilities = capabilities,
+						cmd = { "/home/mike/.local/bin/zls" },
+					})
+				end,
 				["tsserver"] = function()
 					lspconfig.tsserver.setup({
 						capabilities = capabilities,

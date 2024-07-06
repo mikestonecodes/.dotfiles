@@ -25,4 +25,4 @@ end
 bind \e\[C 'commandline -f forward-char'
 bind \e 'commandline -f forward-char'
 zoxide init fish | source
-
+set -x LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64 $LD_LIBRARY_PATH
