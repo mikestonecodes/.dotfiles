@@ -22,4 +22,7 @@ if status --is-login
         end
     end
 end
+bind \e\[C 'commandline -f forward-char'
+bind \e 'commandline -f forward-char'
 zoxide init fish | source
+
