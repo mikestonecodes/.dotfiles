@@ -36,6 +36,7 @@ return {
 				"gopls",
 				"biome",
 				"tsserver",
+				"zls"
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
@@ -50,12 +51,6 @@ return {
 						handlers = {
 							["textDocument/publishDiagnostics"] = function() end,
 						},
-					})
-				end,
-				["zls"] = function()
-					lspconfig.zls.setup({
-						capabilities = capabilities,
-						cmd = { "~/.local/bin/zls" },
 					})
 				end,
 				["lua_ls"] = function()

@@ -80,4 +80,10 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 vim.g.have_nerd_font = true
 
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*.zig",
+    callback = function()
+        vim.fn.jobstart({'fish', '-c', './run.fish'})
+    end
+})
 

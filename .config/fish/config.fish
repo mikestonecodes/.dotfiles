@@ -22,4 +22,4 @@ if status --is-login
         end
     end
 end
-
+zoxide init fish | source
