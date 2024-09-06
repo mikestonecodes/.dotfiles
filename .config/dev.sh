@@ -3,8 +3,6 @@
 # Name of the tmux session
 SESSION_NAME="dev"
 
-# Start tmux server if not already running
-tmux start-server
 
 # Check if the tmux session exists
 if tmux has-session -t $SESSION_NAME 2>/dev/null; then
@@ -19,5 +17,3 @@ fi
 
 # Create a new session and run "bun run dev"
 tmux new-session -d -s $SESSION_NAME "bun run dev"
-
-
