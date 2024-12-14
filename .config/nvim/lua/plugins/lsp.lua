@@ -33,9 +33,10 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"rust_analyzer",
+				"golangci_lint_ls",
 				"gopls",
 				"biome",
-				"tsserver",
+				"ts_ls",
 				"zls",
 			},
 			handlers = {
@@ -50,8 +51,8 @@ return {
 						cmd = { "/home/mike/.local/bin/zls" },
 					})
 				end,
-				["tsserver"] = function()
-					lspconfig.tsserver.setup({
+				["biome"] = function()
+					lspconfig.biome.setup({
 						capabilities = capabilities,
 						handlers = {
 							["textDocument/publishDiagnostics"] = function() end,

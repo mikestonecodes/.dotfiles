@@ -5,14 +5,63 @@ return {
 		name = "plenary",
 	},
 	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
+			"stevearc/oil.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			opts = {
+				keymaps = {
+					["<C-p>"] = false,
+				},
+			},
+		},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts={
+			theme = 'gruvbox'
+		}
 	},
 	{
-		"stevearc/oil.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		opts = {
+			menu = {
+				width = vim.api.nvim_win_get_width(0) - 4,
+			},
+			settings = {
+				save_on_toggle = true,
+			},
+		},
+		keys = function()
+			local keys = {
+				{
+					"<leader>a",
+					function()
+						require("harpoon"):list():add()
+					end,
+					desc = "Harpoon File",
+				},
+				{
+					"<C-e>",
+					function()
+						local harpoon = require("harpoon")
+						harpoon.ui:toggle_quick_menu(harpoon:list())
+					end,
+					desc = "Harpoon Quick Menu",
+				},
+			}
+
+			local nav_keys = { "j", "k", "l", ";" }
+			for i = 1, #nav_keys do
+				table.insert(keys, {
+					"<C-" .. nav_keys[i] .. ">",
+					function()
+						require("harpoon"):list():select(i)
+					end,
+					desc = "Harpoon to File " .. i,
+				})
+			end
+			return keys
+		end,
 	},
 	{
 		"yetone/avante.nvim",
