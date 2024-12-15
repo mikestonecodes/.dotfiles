@@ -5,20 +5,11 @@ return {
 		name = "plenary",
 	},
 	{
-			"stevearc/oil.nvim",
-			dependencies = { "nvim-tree/nvim-web-devicons" },
-			opts = {
-				keymaps = {
-					["<C-p>"] = false,
-				},
-			},
-		},
-	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts={
-			theme = 'gruvbox'
-		}
+		opts = {
+			theme = "gruvbox",
+		},
 	},
 	{
 		"ThePrimeagen/harpoon",
@@ -31,6 +22,10 @@ return {
 				save_on_toggle = true,
 			},
 		},
+		lazy = false,
+		config = function()
+			require("harpoon"):list():select(1)
+		end,
 		keys = function()
 			local keys = {
 				{
@@ -62,6 +57,16 @@ return {
 			end
 			return keys
 		end,
+	},
+
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			keymaps = {
+				["<C-p>"] = false,
+			},
+		},
 	},
 	{
 		"yetone/avante.nvim",
