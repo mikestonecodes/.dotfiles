@@ -22,10 +22,6 @@ return {
 				save_on_toggle = true,
 			},
 		},
-		lazy = false,
-		config = function()
-			require("harpoon"):list():select(1)
-		end,
 		keys = function()
 			local keys = {
 				{

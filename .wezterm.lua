@@ -11,9 +11,7 @@ config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 
 config.disable_default_key_bindings = true
 
-wezterm.on("update-right-status", function(window)
-	window:set_right_status(window:active_workspace())
-end)
+
 config.keys = {
 
 	{
@@ -25,6 +23,26 @@ config.keys = {
 		key = "v",
 		mods = "CTRL|SHIFT",
 		action = act.PasteFrom("Clipboard"),
+	},
+	{
+		key = "t",
+		mods = "CTRL|SHIFT",
+		action = act.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		key = "j",
+		mods = "CTRL|SHIFT",
+		action = act.ActivateTab(0),
+	},
+	{
+		key = "k",
+		mods = "CTRL|SHIFT",
+		action = act.ActivateTab(1),
+	},
+	{
+		key = "l",
+		mods = "CTRL|SHIFT",
+		action = act.ActivateTab(2),
 	},
 }
 
