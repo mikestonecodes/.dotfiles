@@ -35,6 +35,7 @@ return {
 				"rust_analyzer",
 				"golangci_lint_ls",
 				"gopls",
+				"eslint",
 				"biome",
 				"ts_ls",
 				"zls",

@@ -22,10 +22,6 @@ return {
 				save_on_toggle = true,
 			},
 		},
-		lazy = false,
-		config = function()
-			require("harpoon"):list():select(1)
-		end,
 		keys = function()
 			local keys = {
 				{
@@ -73,13 +69,46 @@ return {
 		event = "VeryLazy",
 		opts = {
 			hints = { enabled = false },
+			cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
+			auto_suggestions_provider = "zeta",
+			provider = "claude",
+			vendors = {
+				zeta = {
+					__inherited_from = "openai",
+					api_key_name = "",
+					endpoint = "http://127.0.0.1:11434/v1",
+					model = "zed-industries_zeta",
+					disable_tools = true,
+				},
+				groq = { -- define groq provider
+					__inherited_from = "openai",
+					api_key_name = "GROQ_API_KEY",
+					endpoint = "https://api.groq.com/openai/v1/",
+					model = "llama-3.3-70b-versatile",
+					max_completion_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
+				},
+			},
+			suggestion = {
+				debounce = 200,
+				throttle = 200,
+			},
+			behaviour = {
+				enable_cursor_planning_mode = true, -- enable cursor planning mode!
+				enable_claude_text_editor_tool_mode = true,
+				auto_suggestions = true,
+			},
 		},
-		build = ":AvanteBuild", -- This is optional, recommended tho. Also note that this will block the startup for a bit since we are compiling bindings in Rust.
+		build = "make", -- This is optional, recommended tho. Also note that this will block the startup for a bit since we are compiling bindings in Rust.
 		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
 			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
 			{

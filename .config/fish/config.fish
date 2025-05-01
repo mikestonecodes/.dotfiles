@@ -26,14 +26,7 @@ if status --is-login
 end
 bind \e\[C 'commandline -f forward-char'
 bind \e 'commandline -f forward-char'
-zoxide init fish | source
-set -x LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64 $LD_LIBRARY_PATH
-set -x BROWSER firefox
+set -x BROWSER zen-browser
 source ~/.config/fish/keys.fish
 
-# pnpm
-set -gx PNPM_HOME "/home/mike/.local/share/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
+
