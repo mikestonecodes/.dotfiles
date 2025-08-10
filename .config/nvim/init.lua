@@ -14,6 +14,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.diagnostic.config({
+  virtual_text = true, -- show inline
+  signs = true,        -- show signs in gutter
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
 require("lazy").setup("plugins")
 -- DO.not
 -- DO NOT INCLUDE THIS

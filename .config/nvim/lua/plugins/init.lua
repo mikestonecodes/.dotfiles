@@ -66,42 +66,44 @@ return {
 	},
 	{
 		"yetone/avante.nvim",
+		build = "make",
 		event = "VeryLazy",
+		version = false, -- Never set this value to "*"! Never!
+		---@module 'avante'
+		---@type avante.Config
 		opts = {
+			-- add any opts here
+			-- for example
 			hints = { enabled = false },
-			cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
-			auto_suggestions_provider = "zeta",
-			provider = "claude",
-			vendors = {
-				zeta = {
-					__inherited_from = "openai",
-					api_key_name = "",
-					endpoint = "http://127.0.0.1:11434/v1",
-					model = "zed-industries_zeta",
-					disable_tools = true,
-				},
-				groq = { -- define groq provider
-					__inherited_from = "openai",
-					api_key_name = "GROQ_API_KEY",
-					endpoint = "https://api.groq.com/openai/v1/",
-					model = "llama-3.3-70b-versatile",
-					max_completion_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
-				},
-			},
-			suggestion = {
-				debounce = 200,
-				throttle = 200,
-			},
 			behaviour = {
-				enable_cursor_planning_mode = true, -- enable cursor planning mode!
+				enable_fastapply = false, -- Enable Fast Apply feature
 				enable_claude_text_editor_tool_mode = true,
-				auto_suggestions = true,
+				enable_cursor_planning_mode = true,
+			},
+			provider = "claude",
+			providers = {
+				morph = {
+					model = "morph-v3-large",
+				},
+				openai = {
+					endpoint = "https://api.openai.com/v1",
+					model = "gpt-5",
+					extra_request_body = {
+						temperature = 1,
+					},
+				},
+				claude = {
+					endpoint = "https://api.anthropic.com",
+					model = "claude-3-5-sonnet-20241022",
+					timeout = 30000, -- Timeout in milliseconds
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 8192,
+					},
+				},
 			},
 		},
-		build = "make", -- This is optional, recommended tho. Also note that this will block the startup for a bit since we are compiling bindings in Rust.
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
@@ -109,6 +111,8 @@ return {
 			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"stevearc/dressing.nvim", -- for input provider dressing
+			"folke/snacks.nvim", -- for input provider snacks
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
 			{
@@ -129,7 +133,7 @@ return {
 				},
 			},
 			{
-				-- Make sure to setup it properly if you have lazy=true
+				-- Make sure to set this up properly if you have lazy=true
 				"MeanderingProgrammer/render-markdown.nvim",
 				opts = {
 					file_types = { "markdown", "Avante" },
