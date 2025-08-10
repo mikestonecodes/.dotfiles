@@ -2,6 +2,7 @@
 # Export bun paths
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+set -U fish_user_paths $HOME/go/bin $fish_user_paths
 set -U fish_greeting
 starship init fish | source
 zoxide init fish | source
@@ -31,3 +32,4 @@ set -x BROWSER zen-browser
 source ~/.config/fish/keys.fish
 
 
+fish_add_path $HOME/.local/bin
