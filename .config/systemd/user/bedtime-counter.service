@@ -1,11 +1,12 @@
 [Unit]
 Description=Bedtime Counter Overlay
+After=graphical-session.target
+Wants=graphical-session.target
 
 [Service]
 Environment=LD_PRELOAD=/usr/lib/libgtk4-layer-shell.so
-ExecStart=/usr/bin/gjs /home/mike/.config/bedtime/bedtime.js
-Restart=always
-RestartSec=5
+Environment=WAYLAND_DISPLAY=wayland-1
+ExecStart=/usr/bin/gjs /home/mike/.config/systemd/user/bedtime.js
 
 [Install]
 WantedBy=default.target
