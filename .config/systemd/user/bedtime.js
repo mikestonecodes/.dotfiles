@@ -8,10 +8,6 @@ const { Gtk, GLib } = imports.gi;
 const BEDTIME_START = 22; // 10 PM
 const BEDTIME_END = 8;    // 8 AM
 
-let currentHour = new Date().getHours();
-let timeFromBed = currentHour - BEDTIME_START; // original value
-timeFromBed = timeFromBed + 0.5; // add decimal for testing
-
 const app = new Gtk.Application();
 
 app.connect("activate", () => {
@@ -24,7 +20,6 @@ app.connect("activate", () => {
     Gtk4LayerShell.set_margin(win, Gtk4LayerShell.Edge.LEFT, 0);
 
     let label = new Gtk.Label({ css_classes: ["big-number"] });
-    label.set_text("" + timeFromBed);
     win.set_child(label);
 
     // CSS
@@ -46,8 +41,24 @@ app.connect("activate", () => {
         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
     );
 
-    // Keep running indefinitely
-    GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 60, () => true); // dummy timeout to keep app alive
+    // Function to update the label
+    function updateTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+
+        // fractional hour
+        let decimalHour = hours + minutes / 60 + seconds / 3600;
+
+        let timeFromBed = decimalHour - BEDTIME_START;
+        if (timeFromBed < 0) timeFromBed += 24; // handle crossing midnight
+
+        label.set_text(timeFromBed.toFixed(2)); // show 2 decimals
+        return true; // keep timeout running
+    }
+    // Update every second (or every minute if you want)
+    GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 1, updateTime);
 
     win.present();
 });
