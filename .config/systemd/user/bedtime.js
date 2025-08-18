@@ -48,6 +48,12 @@ app.connect("activate", () => {
         let minutes = now.getMinutes();
         let seconds = now.getSeconds();
 
+        // Don't display anything after 7 AM (bedtime is over)
+        if (hours >= BEDTIME_END && hours < BEDTIME_START) {
+            label.set_text("");
+            return true;
+        }
+
         // fractional hour
         let decimalHour = hours + minutes / 60 + seconds / 3600;
 
