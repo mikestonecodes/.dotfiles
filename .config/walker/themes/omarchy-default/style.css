@@ -2,45 +2,50 @@
 @define-color accent_bg_color #54546d;
 @define-color theme_fg_color #f2ecbc;
 
+/* Global defaults */
 * {
   all: unset;
+  font-family: Sans;        /* pick any font you like */
+  font-size: 28px;          /* global font size */
+  color: @theme_fg_color;
 }
 
+/* Icons */
 .normal-icons {
-  -gtk-icon-size: 16px;
+  -gtk-icon-size: 24px;
 }
 
 .large-icons {
-  -gtk-icon-size: 32px;
+  -gtk-icon-size: 48px;
 }
 
-scrollbar {
+.scrollbar {
   opacity: 0;
 }
 
+/* Main container */
 .box-wrapper {
   box-shadow:
     0 19px 38px rgba(0, 0, 0, 0.3),
     0 15px 12px rgba(0, 0, 0, 0.22);
   background: @window_bg_color;
-  padding: 20px;
+  padding: 24px;
   border-radius: 20px;
   border: 1px solid darker(@accent_bg_color);
 }
 
+/* Text colours */
 .preview-box,
 .elephant-hint,
 .placeholder {
   color: @theme_fg_color;
 }
 
-.box {
-}
-
 .search-container {
   border-radius: 10px;
 }
 
+/* Input */
 .input placeholder {
   opacity: 0.5;
 }
@@ -48,40 +53,25 @@ scrollbar {
 .input {
   caret-color: @theme_fg_color;
   background: lighter(@window_bg_color);
-  padding: 10px;
+  padding: 14px;
   color: @theme_fg_color;
 }
 
-.input:focus,
-.input:active {
-}
-
-.content-container {
-}
-
-.placeholder {
-}
-
-.scroll {
-}
-
+/* Lists and items */
 .list {
   color: @theme_fg_color;
 }
 
-child {
-}
-
 .item-box {
   border-radius: 10px;
-  padding: 10px;
+  padding: 14px;
 }
 
 .item-quick-activation {
-  margin-left: 10px;
+  margin-left: 12px;
   background: alpha(@accent_bg_color, 0.25);
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 6px;
+  padding: 12px;
 }
 
 child:hover .item-box,
@@ -89,43 +79,37 @@ child:selected .item-box {
   background: alpha(@accent_bg_color, 0.25);
 }
 
-.item-text-box {
-}
-
-.item-text {
-}
-
 .item-subtext {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.5;
 }
 
 .item-image {
-  margin-right: 10px;
+  margin-right: 12px;
 }
 
+/* Hints */
 .keybind-hints {
-  font-size: 12px;
-  opacity: 0.5;
+  font-size: 14px;
+  opacity: 0;
   color: @theme_fg_color;
 }
 
+/* Preview box */
 .preview {
   border: 1px solid alpha(@accent_bg_color, 0.25);
-  padding: 10px;
+  padding: 12px;
   border-radius: 10px;
   color: @theme_fg_color;
 }
 
+/* Special cases */
 .calc .item-text {
-  font-size: 24px;
-}
-
-.calc .item-subtext {
+  font-size: 28px;
 }
 
 .symbols .item-image {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .todo.done .item-text-box {
@@ -133,7 +117,7 @@ child:selected .item-box {
 }
 
 .todo.urgent {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .todo.active {
