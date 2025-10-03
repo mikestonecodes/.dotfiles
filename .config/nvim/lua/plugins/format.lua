@@ -19,6 +19,8 @@ return {
 				go = { "goimports", "gofmt" },
 				sh = { "shfmt" },
 				zig = { "zigfmt" },
+				odin = { "lsp" },
+				cs = { "lsp" }, -- ✅ use csharpier instead of non-existent "csharp"
 			},
 			formatters = {
 				goimports = {
@@ -30,7 +32,7 @@ return {
 			{
 				"<leader>f",
 				function()
-					require("conform").format()
+					require("conform").format({ lsp_fallback = true })
 				end,
 				desc = "format",
 			},

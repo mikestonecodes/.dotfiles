@@ -74,7 +74,9 @@ return {
 		opts = {
 			-- add any opts here
 			-- for example
-			hints = { enabled = false },
+			selection = {
+				hint_display = "none",
+			},
 			behaviour = {
 				enable_fastapply = false, -- Enable Fast Apply feature
 				enable_claude_text_editor_tool_mode = true,
@@ -94,11 +96,11 @@ return {
 				},
 				claude = {
 					endpoint = "https://api.anthropic.com",
-					model = "claude-3-5-sonnet-20241022",
+					model = "claude-sonnet-4-5-20250929",
 					timeout = 30000, -- Timeout in milliseconds
 					extra_request_body = {
 						temperature = 0.75,
-						max_tokens = 8192,
+						max_tokens = 20480,
 					},
 				},
 			},

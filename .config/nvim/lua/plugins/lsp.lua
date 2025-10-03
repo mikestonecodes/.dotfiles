@@ -18,7 +18,7 @@ return {
 	config = function()
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
-		local lspconfig = require("lspconfig")
+
 		local capabilities = vim.tbl_deep_extend(
 			"force",
 			{},
@@ -27,41 +27,40 @@ return {
 		)
 
 		require("fidget").setup({})
-		require("mason").setup()
+		require("mason").setup({
+			registries = {
+				"github:mason-org/mason-registry",
+				"github:Crashdummyy/mason-registry",
+			},
+		})
+
+		-- Helper to start LSP servers with merged defaults
+		local function start_server(server, opts)
+			local config = vim.tbl_extend("force",
+				{},
+				vim.lsp.config[server] and vim.lsp.config[server].default_config or {},
+				opts or {}
+			)
+			vim.lsp.start(config)
+		end
 
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",
-				"rust_analyzer",
-				"golangci_lint_ls",
 				"gopls",
 				"eslint",
-				"biome",
+				"ols",
 				"ts_ls",
-				"zls",
 			},
 			handlers = {
-				function(server_name) -- default handler (optional)
-					require("lspconfig")[server_name].setup({
-						capabilities = capabilities,
-					})
+				-- default
+				function(server_name)
+					start_server(server_name, { capabilities = capabilities })
 				end,
-				["zls"] = function()
-					lspconfig.zls.setup({
-						capabilities = capabilities,
-						cmd = { "/home/mike/.local/bin/zls" },
-					})
-				end,
-				["biome"] = function()
-					lspconfig.biome.setup({
-						capabilities = capabilities,
-						handlers = {
-							["textDocument/publishDiagnostics"] = function() end,
-						},
-					})
-				end,
+
+				-- lua_ls override
 				["lua_ls"] = function()
-					lspconfig.lua_ls.setup({
+					start_server("lua_ls", {
 						capabilities = capabilities,
 						settings = {
 							Lua = {
@@ -75,17 +74,27 @@ return {
 				end,
 			},
 		})
-		lspconfig.glsl_analyzer.setup({
-			cmd = { "glsl_analyzer" },
-			filetypes = { "glsl", "frag", "vert" },
+
+		-- Custom server: shader_language_server
+		vim.lsp.config.shader_language_server = {
+			default_config = {
+				cmd = { "/home/mike/.cargo/bin/shader-language-server" },
+				filetypes = { "hlsl", "hlsli", "glsl", "frag", "vert" },
+				root_dir = vim.fs.root(0, { ".git", "." }),
+			},
+		}
+		start_server("shader_language_server", {
 			capabilities = capabilities,
+			handlers = { ["$/progress"] = function() end },
 		})
+
+		-- nvim-cmp setup
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 		vim.opt.completeopt = { "menu", "menuone", "noselect" }
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -96,14 +105,15 @@ return {
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" }, -- For luasnip users.
+				{ name = "luasnip" },
 			}, {
 				{ name = "buffer" },
 			}),
 		})
 
+		-- diagnostics
 		vim.diagnostic.config({
-			-- update_in_insert = true,
+			update_in_insert = true,
 			float = {
 				focusable = false,
 				style = "minimal",
@@ -113,5 +123,6 @@ return {
 				prefix = "",
 			},
 		})
+
 	end,
 }

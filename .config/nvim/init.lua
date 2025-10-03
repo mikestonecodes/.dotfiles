@@ -23,6 +23,7 @@ vim.diagnostic.config({
 })
 
 require("lazy").setup("plugins")
+
 -- DO.not
 -- DO NOT INCLUDE THIS
 
@@ -47,6 +48,7 @@ end
 vim.filetype.add({
 	extension = {
 		templ = "templ",
+		hlsl = "hlsl"
 	},
 })
 
