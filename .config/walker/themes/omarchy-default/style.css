@@ -7,7 +7,6 @@
   all: unset;
   font-family: 'CaskaydiaMono Nerd Font', monospace;
   font-size: 28px;          /* global font size */
-  color: @theme_fg_color;
 }
 
 /* Icons */
@@ -51,7 +50,6 @@
 
 .input {
   caret-color: @theme_fg_color;
-  background: lighter(@window_bg_color);
   padding: 14px;
   color: @theme_fg_color;
 }
@@ -67,13 +65,8 @@
 
 .item-quick-activation {
 	opacity:0;
-	visible:false;
 }
 
-child:hover .item-box,
-child:selected .item-box {
-  background: alpha(@accent_bg_color, 0.25);
-}
 
 .item-subtext {
   font-size: 14px;
@@ -127,3 +120,7 @@ child:selected .item-box {
   -gtk-icon-size: 64px;
 }
 
+child:hover .item-box,
+child:selected .item-box {
+  color:#9ABAD0;
+}

@@ -18,13 +18,14 @@ anchor_right = true
 "default" = { input = "Search", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
 
 
+
 [keybinds]
-close = "Escape"          # one string
-next = "Down"             # one string
-previous = "Up"           # one string
-toggle_exact = "ctrl e"   # one string
-resume_last_query = "ctrl r" # one string
-quick_activate = [ "F1", "F2", "F3", "F4" ]  # list of strings
+close = ["Escape"]
+next = ["Down"]
+previous = ["Up"]
+toggle_exact = ["ctrl e"]
+resume_last_query = ["ctrl r"]
+quick_activate = ["F1", "F2", "F3", "F4"]
 
 
 [providers]
