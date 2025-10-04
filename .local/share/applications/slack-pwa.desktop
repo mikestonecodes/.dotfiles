@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Slack
+Comment=Slack PWA via Helium
+Exec=helium-browser --app=https://app.slack.com/client/T081PR2D8CT/C081N1PQ5B9 --user-data-dir=$HOME/.local/share/helium-profiles/slack --class=SlackPWA --name=Slack
+Terminal=false
+Type=Application
+StartupWMClass=SlackPWA
+Icon=slack     # or full path like ~/.local/share/icons/slack.png
+Categories=Network;Chat;

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Discord
+Comment=Discord PWA via Helium
+Exec=helium-browser --app=https://discord.com/app --user-data-dir=$HOME/.local/share/helium-profiles/discord --class=DiscordPWA --name=Discord
+Terminal=false
+Type=Application
+StartupWMClass=DiscordPWA
+Icon=discord     # or full path
+Categories=Network;Chat;
