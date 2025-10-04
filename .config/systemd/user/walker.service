@@ -1,0 +1,12 @@
+[Unit]
+Description=Walker background service
+
+[Service]
+ExecStart=/usr/bin/walker --gapplication-service
+Restart=on-failure
+# Optional: ensure XDG env vars are passed
+Environment=DISPLAY=%I
+Environment=XDG_CURRENT_DESKTOP=Hyprland
+
+[Install]
+WantedBy=default.target

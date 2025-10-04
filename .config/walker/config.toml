@@ -5,7 +5,7 @@ selection_wrap = false          # wrap list if at bottom or top
 global_argument_delimiter = "#" # query: firefox#https://benz.dev => part after delimiter will be ignored when querying. this should be the same as in the elephant config
 keep_open_modifier = "shift"    # won't close on activation, but rather select the next item in the list
 exact_search_prefix = "'"       # disable fuzzy searching
-theme = "omarchy-default"               # theme to use
+theme = "mike"               # theme to use
 disable_mouse = false           # disable mouse (on input and list only)
 
 [shell]
@@ -17,16 +17,13 @@ anchor_right = true
 [placeholders]
 "default" = { input = "Search", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
 
-
-
 [keybinds]
-close = ["Escape"]
-next = ["Down"]
-previous = ["Up"]
-toggle_exact = ["ctrl e"]
-resume_last_query = ["ctrl r"]
+close = "Escape"
+next = "Down"
+previous = "Up"
+toggle_exact = "ctrl e"
+resume_last_query = "ctrl r"
 quick_activate = ["F1", "F2", "F3", "F4"]
-
 
 [providers]
 default = [
@@ -76,10 +73,19 @@ providerlist = [
   { action = "activate", default = true, bind = "Return", after = "ClearReload" },
 ]
 
+bluetooth = [
+  { action = "find", bind = "ctrl f", after = "ClearReload" },
+  { action = "trust", bind = "ctrl t", after = "Nothing" },
+  { action = "untrust", bind = "ctrl t", after = "Nothing" },
+  { action = "pair", bind = "Return", after = "Nothing" },
+  { action = "remove", bind = "ctrl d", after = "Nothing" },
+  { action = "connect", bind = "Return", after = "Nothing" },
+  { action = "disconnect", bind = "Return", after = "Nothing" },
+]
+
 archlinuxpkgs = [
   { action = "install", bind = "Return", default = true },
   { action = "remove", bind = "Return" },
-  { action = "remove", bind = "ctrl r" },
 ]
 
 calc = [
