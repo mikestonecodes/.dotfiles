@@ -1,0 +1,16 @@
+[Unit]
+Description=Niri Wayland Compositor (session)
+After=graphical-session-pre.target
+Wants=graphical-session-pre.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/niri-session
+# Don't try to attach a TTY to stdin (user services can't do that)
+StandardInput=null
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
+

@@ -1,0 +1,111 @@
+
+// Settings that influence how windows are positioned and sized.
+// Find more information on the wiki:
+// https://yalter.github.io/niri/Configuration:-Layout
+layout {
+
+    center-focused-column "never"
+    gaps 16
+    //center-focused-column "never"
+    //default-column-width { proportion 0.5; }
+    focus-ring {
+        width 4
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+
+    // You can also add a border. It's similar to the focus ring, but always visible.
+    border {
+        off
+        width 4
+        active-color "#ffc87f"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+
+    default-column-width { proportion 0.5; }
+}
+
+output "eDP-1" {
+	off
+}
+
+animations {
+    workspace-switch {
+		off
+    }
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+input {
+ keyboard {
+         repeat-delay 200
+         repeat-rate 35
+    }
+
+	warp-mouse-to-focus
+	focus-follows-mouse max-scroll-amount="95%"
+}
+
+
+cursor {
+    xcursor-theme "breeze_cursors"
+    xcursor-size 48
+    hide-when-typing
+    hide-after-inactive-ms 1000
+}
+
+spawn-at-startup "elephant"
+spawn-at-startup "walker" "--gapplication-service"
+spawn-at-startup "ghostty"
+//spawn-at-sh-startup "helium-browser --app=https://discord.com/app --user-data-dir=$HOME/.local/share/helium-profiles/discord --class=DiscordPWA --name=Discord"
+spawn-at-startup "spotify"
+
+
+hotkey-overlay {
+     skip-at-startup
+}
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+/-window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+binds {
+    // === Core actions ===
+    Mod+Q repeat=false { close-window; }        // killactive
+    Mod+W { maximize-window-to-edges; }                  // maximize
+    Mod+Z { center-visible-columns; }                  // maximize
+    Mod+Shift+E { quit; }                       // exit compositor
+
+    // === Launcher & utilities ===
+    Mod+R hotkey-overlay-title="menu" { spawn "walker"; } // menu
+    Mod+X hotkey-overlay-title="terminal" { spawn "ghostty"; } // terminal
+    Mod+T { screenshot-screen; } // screenshot
+    Mod+V {
+        spawn "pkill -SIGINT wf-recorder || wf-recorder -g \"$(hyprctl activewindow -j | jq -r '\"\\(.at[0]),\\(.at[1]) \\(.size[0])x\\(.size[1])\"')\" -f ~/Videos/$(date +%Y-%m-%d_%H-%M-%S).mp4";
+    } // toggle record
+
+    // === Focus movement (u i o p = left right up down) ===
+    Mod+U { focus-column-left-or-last; }
+    Mod+I { focus-column-right-or-first; }
+    Mod+O { focus-window-up; }
+    Mod+P { focus-window-down; }
+
+    // === Workspaces (matching Hyprland 1–9) ===
+	Mod+A { focus-workspace 1; }
+    Mod+S { focus-workspace 2; }
+    Mod+D { focus-workspace 3; }
+    Mod+F { focus-workspace 4; }
+    Mod+G { focus-workspace 5; }
+    Mod+H { focus-workspace 6; }
+    Mod+J { focus-workspace 7; }
+    Mod+K { focus-workspace 8; }
+    Mod+L { focus-workspace 9; }
+}

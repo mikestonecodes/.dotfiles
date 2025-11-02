@@ -2,14 +2,23 @@
 Description=Bedtime Counter Overlay
 After=graphical-session.target suspend.target
 Wants=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
+Type=simple
+# Require Wayland session
 Environment=LD_PRELOAD=/usr/lib/libgtk4-layer-shell.so
+Environment=GDK_BACKEND=wayland
+Environment=GTK_LAYER_SHELL_DEBUG=0
+# (optional) ensure Wayland socket path is correct
+Environment=WAYLAND_DISPLAY=wayland-1
+Environment=XDG_SESSION_TYPE=wayland
+
+ExecStartPre=/bin/sleep 1
 ExecStart=/usr/bin/gjs /home/mike/.config/systemd/user/bedtime.js
+
 Restart=always
 RestartSec=2
-# Restart after suspend/resume
-ExecStartPre=/bin/sleep 1
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
