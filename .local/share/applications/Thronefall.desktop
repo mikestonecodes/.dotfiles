@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Thronefall
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/2239150
+Icon=steam_icon_2239150
+Terminal=false
+Type=Application
+Categories=Game;

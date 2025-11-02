@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Nova Drift
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/858210
+Icon=steam_icon_858210
+Terminal=false
+Type=Application
+Categories=Game;

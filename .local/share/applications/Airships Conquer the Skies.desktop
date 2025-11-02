@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Airships: Conquer the Skies
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/342560
+Icon=steam_icon_342560
+Terminal=false
+Type=Application
+Categories=Game;

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Terrafactor Demo
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/3434100
+Icon=steam_icon_3434100
+Terminal=false
+Type=Application
+Categories=Game;

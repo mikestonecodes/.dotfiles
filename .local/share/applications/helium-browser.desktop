@@ -1,0 +1,22 @@
+[Desktop Entry]
+Version=1.0
+Name=Helium Browser
+GenericName=Web Browser
+Comment=Access the Internet
+Exec=env ELECTRON_ENABLE_WAYLAND=1 XDG_SESSION_TYPE=wayland /opt/helium-browser-bin/chrome --ozone-platform=wayland --ozone-platform-hint=wayland --enable-features=WaylandWindowDecorations,TouchpadOverscrollHistoryNavigation %U
+StartupNotify=true
+StartupWMClass=helium
+Terminal=false
+Icon=helium-browser
+Type=Application
+Categories=Network;WebBrowser;
+Actions=new-window;new-private-window;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=helium-browser
+
+[Desktop Action new-private-window]
+Name=New Incognito Window
+Exec=helium-browser --incognito
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;

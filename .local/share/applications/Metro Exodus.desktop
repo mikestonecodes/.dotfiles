@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Metro Exodus
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/412020
+Icon=steam_icon_412020
+Terminal=false
+Type=Application
+Categories=Game;

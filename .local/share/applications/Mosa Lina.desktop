@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Mosa Lina
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/2477090
+Icon=steam_icon_2477090
+Terminal=false
+Type=Application
+Categories=Game;

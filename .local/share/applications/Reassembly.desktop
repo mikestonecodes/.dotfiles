@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Reassembly
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/329130
+Icon=steam_icon_329130
+Terminal=false
+Type=Application
+Categories=Game;

@@ -1,0 +1,17 @@
+[MIME Cache]
+application/pdf=helium-browser.desktop;
+application/rdf+xml=helium-browser.desktop;
+application/rss+xml=helium-browser.desktop;
+application/xhtml+xml=helium-browser.desktop;
+application/xhtml_xml=helium-browser.desktop;
+application/xml=helium-browser.desktop;
+image/gif=helium-browser.desktop;
+image/jpeg=helium-browser.desktop;
+image/png=helium-browser.desktop;
+image/webp=helium-browser.desktop;
+text/html=helium-browser.desktop;
+text/xml=helium-browser.desktop;
+x-scheme-handler/http=helium-browser.desktop;
+x-scheme-handler/https=helium-browser.desktop;
+x-scheme-handler/tg=org.telegram.desktop._9cccd16cedc18958de1758910a2065da.desktop;org.telegram.desktop._f79d601e26a782fd149b3ffb098aae9f.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop._9cccd16cedc18958de1758910a2065da.desktop;org.telegram.desktop._f79d601e26a782fd149b3ffb098aae9f.desktop;
